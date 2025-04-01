@@ -1,76 +1,103 @@
-import random
+from numpy import random
 import time
 
-def difficulty():
-    difficulty = str.casefold(input("Choose your difficulty (easy/hard): "))
-    if difficulty == "easy":
-        easyMode()
-    elif difficulty == "hard":
-        hardMode()
+def playerchoose():
+    global p_wp
+    p_wp = input("Choose your weapon (Rock/Paper/Scissors): ")
+    if str.casefold(p_wp) == str("rock"):
+        p_wp = 1
+    elif str.casefold(p_wp) == str("paper"):
+        p_wp = 2
+    elif str.casefold(p_wp) == str("scissors"):
+        p_wp = 3
+    elif str.casefold(p_wp) == str("gun"):
+        p_wp = 4
     else:
-        print("Invalid choice, please try again.")
-        return difficulty()
+        playerchoose()
 
-def playerChoose():
-    playerchoice = str.casefold(input("Choose your weapon (Rock/Paper/Scissors): "))
-    if playerchoice not in ["rock", "paper", "scissors", "gun"]:
-        print("Invalid choice, please try again.")
-        return playerChoose()
-    return playerchoice
-
-def computerChoose():
-    computerchoice = random.choice(["rock", "paper", "scissors"])
-    return computerchoice
-
-def determineWinner(playerchoice, computerchoice):
-    print("I choose " + str(computerchoice))
-    print("You have chosen " + str(playerchoice))
-    if playerchoice == computerchoice:
+def rock():
+    if p_wp == 1:
         print("It's a tie!")
-    elif playerchoice == "rock" and computerchoice == "scissors" or playerchoice == "paper" and computerchoice == "rock" or playerchoice == "scissors" and computerchoice == "paper":
+    elif p_wp == 2:
         print("You win!")
-    elif playerchoice == "gun":
-        print("Wait a minute, that's illegal!")
-    else:
+    elif p_wp == 3:
         print("You lose!")
 
-def easyMode():
-    playerchoice = playerChoose()
-    computerchoice = computerChoose()
-    determineWinner(playerchoice, computerchoice)
 
-def hardModeLogic(playerchoice):
-    if playerchoice == "rock":
-        return "paper"
-    elif playerchoice == "paper":
-        return "scissors"
-    elif playerchoice == "scissors":
-        return "rock"
+def paper():
+    if p_wp == 1:
+        print("You lose!")
+    elif p_wp == 2:
+        print("It's a tie!")
+    elif p_wp == 3:
+        print("You win!")
 
-def specialSequence():
-    print("Good thing I have my kevlar vest on!")
-    print("You lose!")
 
-def hardMode():
-    playerchoice = playerChoose()
-    if playerchoice == "gun":
-        return specialSequence()
+def scissors():
+    if p_wp == 1:
+        print("You win!")
+    elif p_wp == 2:
+        print("You lose!")
+    elif p_wp == 3:
+        print("It's a tie!")
+
+def compchoose():
+    c_wp = random.randint(1,3)
+    if c_wp == 1:
+        print("I choose rock")
+        rock()
+    elif c_wp == 2:
+        print("I choose paper")
+        paper()
     else:
-        computerchoice = hardModeLogic(playerchoice)
-        determineWinner(playerchoice, computerchoice)
+        print("I choose scissors")
+        scissors()
 
-def endGame():
-    print("Thanks for playing!")
-    time.sleep(0.5)
-    restart = str.casefold(input('Press "enter" to play again or type "exit" to quit: '))
-    if restart == "":
+def hardmode():
+    if p_wp == 1:
+        print("I choose paper")
+        print("You lose!")
+    elif p_wp == 2:
+        print("I choose scissors")
+        print("You lose!")
+    elif p_wp == 3:
+        print("I choose rock")
+        print("You lose!")
+    elif p_wp == 4:
+        print("Good thing I got my kevlar vest today.")
+        print("You lose!")
+
+def diff():
+    global difficulty
+    difficulty = input("Enter the difficulty level (Easy/Hard): ")
+
+def end():
+    print("\nThanks for playing!")
+    time.sleep(1)
+    restart = input("Press Enter to restart or type 'exit' to quit: ")
+    if str.casefold(restart) == "exit" :
+        exit()
+    elif restart == "":
+        diff()
         game()
     else:
         exit()
 
-
 def game():
-    difficulty()
-    endGame()
+    if str.casefold(difficulty) == str("easy"):
+        playerchoose()
+        if p_wp == 4:
+            print("Woah, woah calm down okay you win!")
+            end()
+        else:
+            compchoose()
+            end()
+    elif str.casefold(difficulty) == str("hard"):
+        playerchoose()
+        hardmode()
+        end()
+    else:
+        diff()
 
+diff()
 game()
