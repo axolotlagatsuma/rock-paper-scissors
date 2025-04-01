@@ -3,47 +3,51 @@ import time
 
 def difficulty():
     while True:
-        difficulty = str.casefold(input("Choose your difficulty (easy/hard): "))
-        if difficulty == "easy":
-            easyMode()
+        select_difficulty = str.casefold(input("Choose your difficulty (easy/hard): "))
+        if select_difficulty == "easy":
+            easy_mode()
             break
-        elif difficulty == "hard":
-            hardMode()
+        elif select_difficulty == "hard":
+            hard_mode()
             break
         else:
             print("Invalid choice, please try again.")
 
-def playerChoose():
+def player_choose():
     playerchoice = str.casefold(input("Choose your weapon (Rock/Paper/Scissors): "))
     if playerchoice not in ["rock", "paper", "scissors", "gun"]:
         print("Invalid choice, please try again.")
-        return playerChoose()
+        return player_choose()
     return playerchoice
 
-def computerChoose():
+def computer_choose():
     computerchoice = random.choice(["rock", "paper", "scissors"])
     return computerchoice
 
-def determineWinner(playerchoice, computerchoice):
+def determine_winner(playerchoice, computerchoice):
     print(f"I choose {computerchoice}")
     print(f"You have chosen {playerchoice}")
     if playerchoice == computerchoice:
         print("It's a tie!")
+        return "tie"
     elif (playerchoice == "rock" and computerchoice == "scissors") or \
          (playerchoice == "paper" and computerchoice == "rock") or \
          (playerchoice == "scissors" and computerchoice == "paper"):
         print("You win!")
+        return "win"
     elif playerchoice == "gun":
         print("Wait a minute, that's illegal!")
+        return "illegal"
     else:
         print("You lose!")
+        return "lose"
 
-def easyMode():
-    playerchoice = playerChoose()
-    computerchoice = computerChoose()
-    determineWinner(playerchoice, computerchoice)
+def easy_mode():
+    playerchoice = player_choose()
+    computerchoice = computer_choose()
+    determine_winner(playerchoice, computerchoice)
 
-def hardModeLogic(playerchoice):
+def hard_mode_logic(playerchoice):
     if playerchoice == "rock":
         return "paper"
     elif playerchoice == "paper":
@@ -51,19 +55,19 @@ def hardModeLogic(playerchoice):
     elif playerchoice == "scissors":
         return "rock"
 
-def specialSequence():
+def special_sequence():
     print("Good thing I have my kevlar vest on!")
     print("You lose!")
 
-def hardMode():
-    playerchoice = playerChoose()
+def hard_mode():
+    playerchoice = player_choose()
     if playerchoice == "gun":
-        return specialSequence()
+        return special_sequence()
     else:
-        computerchoice = hardModeLogic(playerchoice)
-        determineWinner(playerchoice, computerchoice)
+        computerchoice = hard_mode_logic(playerchoice)
+        determine_winner(playerchoice, computerchoice)
 
-def endGame():
+def end_game():
     print("Thanks for playing!")
     time.sleep(0.5)
     restart = str.casefold(input('Press "enter" to play again or type "exit" to quit: '))
@@ -75,7 +79,7 @@ def endGame():
 
 def game():
     difficulty()
-    return endGame()
+    return end_game()
 
 while game():
     pass
