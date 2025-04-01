@@ -2,14 +2,16 @@ import random
 import time
 
 def difficulty():
-    difficulty = str.casefold(input("Choose your difficulty (easy/hard): "))
-    if difficulty == "easy":
-        easyMode()
-    elif difficulty == "hard":
-        hardMode()
-    else:
-        print("Invalid choice, please try again.")
-        return difficulty()
+    while True:
+        difficulty = str.casefold(input("Choose your difficulty (easy/hard): "))
+        if difficulty == "easy":
+            easyMode()
+            break
+        elif difficulty == "hard":
+            hardMode()
+            break
+        else:
+            print("Invalid choice, please try again.")
 
 def playerChoose():
     playerchoice = str.casefold(input("Choose your weapon (Rock/Paper/Scissors): "))
@@ -23,11 +25,13 @@ def computerChoose():
     return computerchoice
 
 def determineWinner(playerchoice, computerchoice):
-    print("I choose " + str(computerchoice))
-    print("You have chosen " + str(playerchoice))
+    print(f"I choose {computerchoice}")
+    print(f"You have chosen {playerchoice}")
     if playerchoice == computerchoice:
         print("It's a tie!")
-    elif playerchoice == "rock" and computerchoice == "scissors" or playerchoice == "paper" and computerchoice == "rock" or playerchoice == "scissors" and computerchoice == "paper":
+    elif (playerchoice == "rock" and computerchoice == "scissors") or \
+         (playerchoice == "paper" and computerchoice == "rock") or \
+         (playerchoice == "scissors" and computerchoice == "paper"):
         print("You win!")
     elif playerchoice == "gun":
         print("Wait a minute, that's illegal!")
@@ -64,13 +68,14 @@ def endGame():
     time.sleep(0.5)
     restart = str.casefold(input('Press "enter" to play again or type "exit" to quit: '))
     if restart == "":
-        game()
+        return True
     else:
-        exit()
+        return False
 
 
 def game():
     difficulty()
-    endGame()
+    return endGame()
 
-game()
+while game():
+    pass
