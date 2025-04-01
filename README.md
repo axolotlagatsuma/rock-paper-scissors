@@ -26,7 +26,7 @@
 
 ## About
 
-This project is a simple game of Rock, Paper, Scissors. It is created with Python and Tkinter. The game is simple, you choose one of the three options, and the computer chooses one as well. The winner is decided according to the rules of the game. The game is created as a fun project to practice Python.
+This project is a simple game of Rock, Paper, Scissors. It is created with Python. The game is simple, you choose one of the three options, and the computer chooses one as well. The winner is decided according to the rules of the game. The game is created as a fun project to practice Python.
 
 > [!IMPORTANT]
 > You should know that my code could be a mess and not optimized. I am looking forward to write better code!
