@@ -56,6 +56,13 @@ If you want to show me a new and/or better way to code this project, feel free t
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://axolotlagatsuma.github.io"><img src="https://avatars.githubusercontent.com/u/154734794?v=4?s=100" width="100px;" alt="Mükremin Yağız Yaşar"/><br /><sub><b>Mükremin Yağız Yaşar</b></sub></a><br /><a href="#code-axolotlagatsuma" title="Code">💻</a> <a href="#ideas-axolotlagatsuma" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-axolotlagatsuma" title="Maintenance">🚧</a> <a href="#projectManagement-axolotlagatsuma" title="Project Management">📆</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
